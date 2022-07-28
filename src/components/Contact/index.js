@@ -3,6 +3,7 @@ import React, {useState, useEffect, useRef } from 'react'
 import Loader from 'react-loaders'
 import AnimatedLetters from '../AnimatedLetters/index'
 import emailjs from '@emailjs/browser'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 const Contact = () => {
     const [letterClass, setLetterClass] = useState('text-animate');
@@ -49,10 +50,10 @@ const Contact = () => {
                 <form ref={refForm} onSubmit={sendEmail}>
                     <ul>
                         <li className='half'>
-                            <input type="text"  placeholder='Name' name="name" required />
+                            <input type="text"  placeholder='Name' name="from_name" required />
                         </li>
                         <li className='half'>
-                            <input type="email"  placeholder='Email' name="email" required />
+                            <input type="email"  placeholder='Email' name="email_id" required />
                         </li>
                         <li>
                             <input type='text'name='subject' placeholder='Subject' required />
@@ -66,6 +67,25 @@ const Contact = () => {
                     </ul>
                 </form>
             </div>
+        </div>
+        <div className='info-map'>
+            Vishnu Sekhar 
+            <br />
+            India,
+            <br />
+            South street, DH
+            <br />
+            221 Baker Street
+            <br />
+            <span>vishnusekhar96@gmail.com</span>
+        </div>
+        <div className="map-wrap">
+          <MapContainer center={[10.8505, 76.2711]} zoom={13}>
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            <Marker position={[10.8505, 76.2711]}>
+              <Popup>Vishnu lives here, come over for a cup of coffee :)</Popup>
+            </Marker>
+          </MapContainer>
         </div>
    </div>
    <Loader type='pacman' />
